@@ -2,28 +2,22 @@ import sys
 import copy
 
 
-stacks = [
-    ['W', 'R', 'F'],
-    ['T', 'H', 'M', 'C', 'D', 'V', 'W', 'P'],
-    ['P', 'M', 'Z', 'N', 'L'],
-    ['J', 'C', 'H', 'R'],
-    ['C', 'P', 'G', 'H', 'Q', 'T', 'B'],
-    ['G', 'C', 'W', 'L', 'F', 'Z'],
-    ['W', 'V', 'L', 'Q', 'Z', 'J', 'G', 'C'],
-    ['P', 'N', 'R', 'F', 'W', 'T', 'V', 'C'],
-    ['J', 'W', 'H', 'G', 'R', 'S', 'V']
-]
+stacks = [[] for _ in range(9)]
 commands = []
 
 input_file = sys.argv[1] if len(sys.argv) > 1 else 'input.txt'
 with open(input_file, 'r') as file:
-    start_reading = False
+    reading_crates = True
 
     for line in file:
         if line == '\n':
-            start_reading = True
+            reading_crates = False
             continue
-        if start_reading:
+        if reading_crates:
+            for i in range(1, len(line), 4):
+                if line[i] not in "123456789[]\n ":
+                    stacks[(i-1)//4].insert(0, line[i])
+        else:
             broken_line = line.split()
             qty, i, j = int(broken_line[1]), int(broken_line[3]) - 1, int(broken_line[5]) - 1
             commands.append((qty, i, j))
