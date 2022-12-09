@@ -78,7 +78,6 @@ def answer2():
 
     for command in commands:
         direction, amount = command
-
         for _ in range(amount):
             knots[0] = move_head(knots[0], direction)
             for i in range(1, len(knots)):
