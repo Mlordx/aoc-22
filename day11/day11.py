@@ -10,7 +10,7 @@ class Monkey:
     def inspection(self, divide_worry=True):
         while len(self.items_held) > 0:
             self.business_level += 1
-            old = self.items_held.pop(0)
+            old = self.items_held.pop(0) % modulo
             new = eval(self.operation)
             divided_by = 3 if divide_worry else 1
 
@@ -32,14 +32,14 @@ monkeys = []
 def reset_monkeys():
     global monkeys
     monkeys = [
-        Monkey([98, 97, 98, 55, 56, 72], '(old%modulo) * 13', 11, 4, 7),
-        Monkey([73, 99, 55, 54, 88, 50, 55], '(old%modulo) + 4', 17, 2, 6),
-        Monkey([67, 98], '(old%modulo) * 11', 5, 6, 5),
-        Monkey([82, 91, 92, 53, 99], '(old%modulo) + 8', 13, 1, 2),
-        Monkey([52, 62, 94, 96, 52, 87, 53, 60], '(old%modulo) * (old%modulo)', 19, 3, 1),
-        Monkey([94, 80, 84, 79], '(old%modulo) + 5', 2, 7, 0),
-        Monkey([89], '(old%modulo) + 1', 3, 0, 5),
-        Monkey([70, 59, 63], '(old%modulo) + 3', 7, 4, 3),
+        Monkey([98, 97, 98, 55, 56, 72], 'old * 13', 11, 4, 7),
+        Monkey([73, 99, 55, 54, 88, 50, 55], 'old + 4', 17, 2, 6),
+        Monkey([67, 98], 'old * 11', 5, 6, 5),
+        Monkey([82, 91, 92, 53, 99], 'old + 8', 13, 1, 2),
+        Monkey([52, 62, 94, 96, 52, 87, 53, 60], 'old * old', 19, 3, 1),
+        Monkey([94, 80, 84, 79], 'old + 5', 2, 7, 0),
+        Monkey([89], 'old + 1', 3, 0, 5),
+        Monkey([70, 59, 63], 'old + 3', 7, 4, 3),
     ]
 
 
