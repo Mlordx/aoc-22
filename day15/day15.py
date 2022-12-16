@@ -26,19 +26,16 @@ def manhanttan_dist(a, b):
 
 
 def impossible_locations_by_height(height, sensor, beacon):
-    impossible = set()
-
     x1, y1 = sensor
 
     dist = manhanttan_dist(sensor, beacon)
 
     if abs(height - y1) > dist:
-        return set()
+        return None
 
     off_y = abs(height - y1)
     off_x = dist - off_y
-    impossible.add((x1 - off_x, x1 + off_x))
-    return impossible
+    return (x1 - off_x, x1 + off_x)
 
 
 def contains(interval, value):
@@ -78,10 +75,9 @@ def check_possible_positions(height, sensor, beacon):
                 nearest_beacon[other_sensor]
             )
 
-            for interval in impossible:
-                if contains(interval, x):
-                    answer = False
-                    break
+            if impossible and contains(impossible, x):
+                answer = False
+                break
 
         if answer:
             return (x, y)
@@ -92,9 +88,11 @@ def check_possible_positions(height, sensor, beacon):
 def answer1():
     IMPOSSIBLE_POSITIONS = set()
     for sensor in nearest_beacon:
-        IMPOSSIBLE_POSITIONS.update(
-            impossible_locations_by_height(2000000, sensor, nearest_beacon[sensor])
-        )
+        interval = impossible_locations_by_height(2000000, sensor, nearest_beacon[sensor])
+        if interval is None:
+            continue
+
+        IMPOSSIBLE_POSITIONS.add(interval)
 
     marked = set()
     for x1, x2 in IMPOSSIBLE_POSITIONS:
