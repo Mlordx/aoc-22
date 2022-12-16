@@ -46,7 +46,7 @@ def contains(interval, value):
     return a <= value <= b
 
 
-def mark_possible_positions(height, sensor, beacon):
+def check_possible_positions(height, sensor, beacon):
     possible_positions = set()
     x1, y1 = sensor
     dist = manhanttan_dist(sensor, beacon)
@@ -109,7 +109,7 @@ def answer1():
 
 def answer2():
     for sensor in nearest_beacon:
-        answer = mark_possible_positions(2000000, sensor, nearest_beacon[sensor])
+        answer = check_possible_positions(2000000, sensor, nearest_beacon[sensor])
         if answer is not None:
             return answer[0] * 4000000 + answer[1]
 
