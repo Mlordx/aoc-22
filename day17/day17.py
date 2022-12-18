@@ -142,13 +142,14 @@ def answer2():
 
                 if key in known_positions and not jumped:
                     old_count, old_height = known_positions[key]
-
                     rock_count_diff = count - old_count
                     height_per_cycle = floor_height - old_height
 
                     repeat = (target - count) // rock_count_diff
                     additional_rocks = repeat * height_per_cycle
                     count += repeat * rock_count_diff
+
+                    jumped = True
 
                 known_positions[key] = (count, floor_height)
 
