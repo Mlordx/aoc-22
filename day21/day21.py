@@ -32,7 +32,7 @@ def answer2():
         elif op[:4] != 'humn':
             real_operations.append(op)
 
-    lo = int(0)
+    lo = 0
     hi = int(1e13)
     while True:
         num = (lo + hi) // 2
