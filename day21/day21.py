@@ -16,7 +16,6 @@ def compute(operations):
             exec(op)
         except NameError:
             operations_here.append(op)
-            continue
 
     return eval('root')
 
