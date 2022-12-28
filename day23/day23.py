@@ -96,6 +96,7 @@ def simulate(part1=True):
                 new_grid.add(elf)
             else:
                 destination = proposed_movements[elf]
+
                 if position_count[destination] < 2:
                     new_grid.add(destination)
                 else:
@@ -110,7 +111,7 @@ def simulate(part1=True):
     x = [x for x, _ in local_grid]
     y = [y for _, y in local_grid]
 
-    return abs(max(x) - min(x) + 1) * abs(max(y) - min(y) + 1) - len(local_grid)
+    return (max(x) - min(x) + 1) * (max(y) - min(y) + 1) - len(local_grid)
 
 
 def answer1():
