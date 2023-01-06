@@ -131,7 +131,7 @@ def calculate_max_geodes(total_time, blueprint):
             # current state's potential is lower than theoretical max
             continue
 
-        if elapsed_time < total_time:
+        if elapsed_time < total_time and best[elapsed_time] - resources['geode'] <= 2:
             options = blueprint.get_robot_options(resources)
 
             if 'geode' not in options:
