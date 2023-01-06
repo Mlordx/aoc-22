@@ -127,7 +127,7 @@ def calculate_max_geodes(total_time, blueprint):
         best[elapsed_time] = max(best[elapsed_time], resources['geode'])
 
         t = total_time - elapsed_time
-        if best[elapsed_time] >= resources['geode'] + robots['geode']*t + t*(t-1)/2:
+        if best[total_time] >= resources['geode'] + robots['geode']*t + t*(t-1)/2:
             # current state's potential is lower than theoretical max
             continue
 
